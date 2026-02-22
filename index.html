@@ -63,7 +63,12 @@
         <section class="container mx-auto p-6 space-y-4">
             <div class="flex items-center justify-between">
                 <h2 class="text-xl font-semibold ">Available Jobs</h2>
-                <h3 id="available-jobs" class="text-gray-600 font-medium">0 Jobs</h3>
+                <div class="flex gap-2 items-center justify-center">
+                    <span id="available-rejected-jobs"></span>
+                    <span id="available-interview-jobs"></span>
+                    <h3 id="available-jobs" class="text-gray-600 font-medium"> 0 Jobs</h3>
+                </div>
+
             </div>
 
             <div id="toggle-button" class="flex gap-2">
@@ -72,9 +77,11 @@
                     class="w-20 border border-[#dddddd57] px-3 py-2 rounded-md font-semibold text-[12px] bg-blue-600 text-white  cursor-pointer">All</button>
 
                 <button id="interview-btn" onclick="toggleStyle('interview-btn')"
+                    onclick="updateInterviewAndRejectedCount()"
                     class="w-20 border border-[#dddddd57] px-3 py-2 rounded-md font-semibold text-[12px] text-gray-500  cursor-pointer">Interview</button>
 
                 <button id="rejected-btn" onclick="toggleStyle('rejected-btn')"
+                    onclick="updateInterviewAndRejectedCount()"
                     class="w-20 border border-[#dddddd57]  px-3 py-2 rounded-md font-semibold text-[12px] text-gray-500  cursor-pointer">Rejected</button>
 
             </div>
@@ -145,13 +152,13 @@
                 <div class="shadow rounded-md p-6 flex items-start justify-between">
                     <!-- left side -->
                     <div class="space-y-1">
-                        <h2 class="company-name text-xl font-semibold">Mobile First Corp</h2>
+                        <h2 class="company-name text-xl font-semibold">Job 3</h2>
                         <p class="position text-gray-500">React Native Developer</p>
                         <p class="location text-gray-500 mt-4">Remote • Full-time <span class="salary">• $130,000 -
                                 $175,000</span></p>
 
                         <button
-                            class="type mt-3 px-3 py-2 rounded-md font-medium bg-[#EEF4FF] text-[12px] uppercase  cursor-pointer hidden  ">Not
+                            class="type mt-3 px-3 py-2 rounded-md font-medium bg-[#EEF4FF] text-[12px] uppercase  cursor-pointer hidden">Not
                             Applied</button>
 
 
@@ -175,13 +182,13 @@
                 <div class="shadow rounded-md p-6 flex items-start justify-between">
                     <!-- left side -->
                     <div class="space-y-1">
-                        <h2 class="company-name text-xl font-semibold">Mobile First Corp</h2>
+                        <h2 class="company-name text-xl font-semibold">Job 4</h2>
                         <p class="position text-gray-500">React Native Developer</p>
                         <p class="location text-gray-500 mt-4">Remote • Full-time <span class="salary">• $130,000 -
                                 $175,000</span></p>
 
                         <button
-                            class="type mt-3 px-3 py-2 rounded-md font-medium bg-[#EEF4FF] text-[12px] uppercase  cursor-pointer hidden  ">Not
+                            class="type mt-3 px-3 py-2 rounded-md font-medium bg-[#EEF4FF] text-[12px] uppercase  cursor-pointer hidden">Not
                             Applied</button>
 
 
@@ -205,13 +212,13 @@
                 <div class="shadow rounded-md p-6 flex items-start justify-between">
                     <!-- left side -->
                     <div class="space-y-1">
-                        <h2 class="company-name text-xl font-semibold">Mobile First Corp</h2>
+                        <h2 class="company-name text-xl font-semibold">Job 5</h2>
                         <p class="position text-gray-500">React Native Developer</p>
                         <p class="location text-gray-500 mt-4">Remote • Full-time <span class="salary">• $130,000 -
                                 $175,000</span></p>
 
                         <button
-                            class="type mt-3 px-3 py-2 rounded-md font-medium bg-[#EEF4FF] text-[12px] uppercase  cursor-pointer hidden  ">Not
+                            class="type mt-3 px-3 py-2 rounded-md font-medium bg-[#EEF4FF] text-[12px] uppercase  cursor-pointer hidden">Not
                             Applied</button>
 
 
@@ -235,13 +242,13 @@
                 <div class="shadow rounded-md p-6 flex items-start justify-between">
                     <!-- left side -->
                     <div class="space-y-1">
-                        <h2 class="company-name text-xl font-semibold">Mobile First Corp</h2>
+                        <h2 class="company-name text-xl font-semibold">Job 6</h2>
                         <p class="position text-gray-500">React Native Developer</p>
                         <p class="location text-gray-500 mt-4">Remote • Full-time <span class="salary">• $130,000 -
                                 $175,000</span></p>
 
                         <button
-                            class="type mt-3 px-3 py-2 rounded-md font-medium bg-[#EEF4FF] text-[12px] uppercase  cursor-pointer hidden  ">Not
+                            class="type mt-3 px-3 py-2 rounded-md font-medium bg-[#EEF4FF] text-[12px] uppercase  cursor-pointer hidden">Not
                             Applied</button>
 
 
@@ -265,13 +272,13 @@
                 <div class="shadow rounded-md p-6 flex items-start justify-between">
                     <!-- left side -->
                     <div class="space-y-1">
-                        <h2 class="company-name text-xl font-semibold">Mobile First Corp</h2>
+                        <h2 class="company-name text-xl font-semibold">Job 7</h2>
                         <p class="position text-gray-500">React Native Developer</p>
                         <p class="location text-gray-500 mt-4">Remote • Full-time <span class="salary">• $130,000 -
                                 $175,000</span></p>
 
                         <button
-                            class="type mt-3 px-3 py-2 rounded-md font-medium bg-[#EEF4FF] text-[12px] uppercase  cursor-pointer hidden  ">Not
+                            class="type mt-3 px-3 py-2 rounded-md font-medium bg-[#EEF4FF] text-[12px] uppercase  cursor-pointer hidden">Not
                             Applied</button>
 
 
@@ -295,13 +302,13 @@
                 <div class="shadow rounded-md p-6 flex items-start justify-between">
                     <!-- left side -->
                     <div class="space-y-1">
-                        <h2 class="company-name text-xl font-semibold">Mobile First Corp</h2>
+                        <h2 class="company-name text-xl font-semibold">Job 8</h2>
                         <p class="position text-gray-500">React Native Developer</p>
                         <p class="location text-gray-500 mt-4">Remote • Full-time <span class="salary">• $130,000 -
                                 $175,000</span></p>
 
                         <button
-                            class="type mt-3 px-3 py-2 rounded-md font-medium bg-[#EEF4FF] text-[12px] uppercase  cursor-pointer hidden  ">Not
+                            class="type mt-3 px-3 py-2 rounded-md font-medium bg-[#EEF4FF] text-[12px] uppercase  cursor-pointer hidden">Not
                             Applied</button>
 
 
@@ -334,6 +341,9 @@
                 <p class="text-gray-500">Check back soon for new job opportunities</p>
 
             </div>
+        </section>
+
+        <section id="filter-section" class="container mx-auto p-6 space-y-4 hidden">
         </section>
     </main>
     <!-- Main End -->
