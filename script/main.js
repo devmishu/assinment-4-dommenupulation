@@ -137,7 +137,7 @@ function deleteInterviewElement() {
 }
 
 
-function interviewAndRejecetCount(){
+function interviewAndRejecetCount() {
     mainContainer.addEventListener('click', function (event) {
         if (event.target.classList.contains('interview-toggle-btn')) {
             const jobElement = event.target.parentNode.parentNode;
@@ -250,6 +250,13 @@ function renderInterview() {
         noJobsElement.classList.add('hidden');
     }
 
+    if (currentStatus === 'interview-btn') {
+        availableInterviewJobsElement.innerText = `${interviewList.length} of `;
+    }
+
+    if (currentStatus === 'rejected-btn') {
+        availableRejectedJobsElement.innerText = `${rejectedList.length} of `;
+    }
     for (const interview of interviewList) {
         let div = document.createElement('div');
         div.classList.add('shadow', 'rounded-md', 'p-6', 'flex', 'items-start', 'justify-between');
@@ -292,6 +299,13 @@ function renderRejected() {
         noJobsElement.classList.add('hidden');
     }
 
+    if (currentStatus === 'interview-btn') {
+        availableInterviewJobsElement.innerText = `${interviewList.length} of `;
+    }
+
+    if (currentStatus === 'rejected-btn') {
+        availableRejectedJobsElement.innerText = `${rejectedList.length} of `;
+    }
 
     for (const rejected of rejectedList) {
         let div = document.createElement('div');
