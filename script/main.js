@@ -114,6 +114,14 @@ function deleteJobElement() {
                 renderRejected();
             }
 
+            if (currentStatus === 'interview-btn') {
+                availableInterviewJobsElement.innerText = `${interviewList.length} of `;
+            }
+
+            if (currentStatus === 'rejected-btn') {
+                availableRejectedJobsElement.innerText = `${rejectedList.length} of `;
+            }
+
         }
     });
 }
@@ -123,115 +131,115 @@ function deleteInterviewElement() {
     for (const element of interviewList) {
         if (element === "interview") {
             deleteJobElement();
+
         }
     }
 }
 
 
+function interviewAndRejecetCount(){
+    mainContainer.addEventListener('click', function (event) {
+        if (event.target.classList.contains('interview-toggle-btn')) {
+            const jobElement = event.target.parentNode.parentNode;
 
-mainContainer.addEventListener('click', function (event) {
-    if (event.target.classList.contains('interview-toggle-btn')) {
-        const jobElement = event.target.parentNode.parentNode;
+            const companyName = jobElement.querySelector('.company-name').innerText;
+            const position = jobElement.querySelector('.position').innerText;
+            const location = jobElement.querySelector('.location').innerText;
+            const salary = jobElement.querySelector('.salary').innerText;
+            const type = jobElement.querySelector('.type').innerText;
+            const description = jobElement.querySelector('.description').innerText;
 
-        const companyName = jobElement.querySelector('.company-name').innerText;
-        const position = jobElement.querySelector('.position').innerText;
-        const location = jobElement.querySelector('.location').innerText;
-        const salary = jobElement.querySelector('.salary').innerText;
-        const type = jobElement.querySelector('.type').innerText;
-        const description = jobElement.querySelector('.description').innerText;
-
-        jobElement.querySelector('.type').innerText = 'interview';
+            jobElement.querySelector('.type').innerText = 'interview';
 
 
-        const jobInfo = {
-            companyName: companyName,
-            position: position,
-            location: location,
-            salary: salary,
-            type: 'interview',
-            description: description,
+            const jobInfo = {
+                companyName: companyName,
+                position: position,
+                location: location,
+                salary: salary,
+                type: 'interview',
+                description: description,
+            }
+
+            const companyNameExit = interviewList.find(function (item) {
+                return item.companyName == jobInfo.companyName;
+            });
+
+
+
+            if (!companyNameExit) {
+                interviewList.push(jobInfo);
+                jobElement.querySelector('.type').classList.remove('hidden');
+                jobElement.querySelector('.type').classList.add('text-green-600', 'border-2', 'border-green-600');
+
+            }
+
+            rejectedList = rejectedList.filter(function (item) {
+                return item.companyName != jobInfo.companyName
+            });
+
+            if (currentStatus == 'interview-btn') {
+                renderInterview();
+            }
+            if (currentStatus == 'rejected-btn') {
+                renderRejected();
+            }
+
+            claculateCount();
+
+
+        } else if (event.target.classList.contains('rejected-toggle-btn')) {
+            const jobElement = event.target.parentNode.parentNode;
+
+            const companyName = jobElement.querySelector('.company-name').innerText;
+            const position = jobElement.querySelector('.position').innerText;
+            const location = jobElement.querySelector('.location').innerText;
+            const salary = jobElement.querySelector('.salary').innerText;
+            const type = jobElement.querySelector('.type').innerText;
+            const description = jobElement.querySelector('.description').innerText;
+
+            jobElement.querySelector('.type').innerText = 'rejected';
+
+
+            const jobInfo = {
+                companyName: companyName,
+                position: position,
+                location: location,
+                salary: salary,
+                type: 'rejected',
+                description: description,
+            }
+
+            const companyNameExit = rejectedList.find(function (item) {
+                return item.companyName == jobInfo.companyName;
+            });
+
+
+
+            if (!companyNameExit) {
+                rejectedList.push(jobInfo);
+                console.log(rejectedList);
+                jobElement.querySelector('.type').classList.remove('hidden');
+                jobElement.querySelector('.type').classList.add('text-red-600', 'border-2', 'border-red-600');
+
+            }
+
+            interviewList = interviewList.filter(function (item) {
+                return item.companyName !== jobInfo.companyName
+            });
+
+            if (currentStatus == 'rejected-btn') {
+                renderRejected();
+            }
+            if (currentStatus === 'interview-btn') {
+                renderInterview();
+            }
+            claculateCount();
+
         }
-
-        const companyNameExit = interviewList.find(function (item) {
-            return item.companyName == jobInfo.companyName;
-        });
-
-
-
-        if (!companyNameExit) {
-            interviewList.push(jobInfo);
-            jobElement.querySelector('.type').classList.remove('hidden');
-            console.log(interviewList);
-
-        }
-
-        rejectedList = rejectedList.filter(function (item) {
-            return item.companyName != jobInfo.companyName
-        });
-
-        if (currentStatus == 'interview-btn') {
-            renderInterview();
-        }
-        if (currentStatus == 'rejected-btn') {
-            renderRejected();
-            availableRejectedJobsElement.innerText = `${rejectedList.length} of `;
-        }
-
-        claculateCount();
-
-
-    } else if (event.target.classList.contains('rejected-toggle-btn')) {
-        const jobElement = event.target.parentNode.parentNode;
-
-        const companyName = jobElement.querySelector('.company-name').innerText;
-        const position = jobElement.querySelector('.position').innerText;
-        const location = jobElement.querySelector('.location').innerText;
-        const salary = jobElement.querySelector('.salary').innerText;
-        const type = jobElement.querySelector('.type');
-        const description = jobElement.querySelector('.description').innerText;
-
-        jobElement.querySelector('.type').innerText = 'rejected';
-
-
-        const jobInfo = {
-            companyName: companyName,
-            position: position,
-            location: location,
-            salary: salary,
-            type: 'rejected',
-            description: description,
-        }
-
-        const companyNameExit = rejectedList.find(function (item) {
-            return item.companyName == jobInfo.companyName;
-        });
-
-
-
-        if (!companyNameExit) {
-            rejectedList.push(jobInfo);
-            console.log(rejectedList);
-            type.classList.remove('hidden');
-
-        }
-
-        interviewList = interviewList.filter(function (item) {
-            return item.companyName !== jobInfo.companyName
-        });
-
-        if (currentStatus == 'rejected-btn') {
-            renderRejected();
-        }
-        if (currentStatus === 'interview-btn') {
-            renderInterview();
-            availableInterviewJobsElement.innerText = `${interviewList.length} of `;
-        }
-        claculateCount();
-
-    }
-    // deleteJobElement();
-});
-
+        // deleteJobElement();
+    });
+}
 
 
 function renderInterview() {
@@ -253,7 +261,7 @@ function renderInterview() {
                         <p class="location text-gray-500 mt-4">${interview.location}<span class="salary">${interview.salary}</span></p>
 
                         <button
-                            class="type mt-3 px-3 py-2 rounded-md font-medium bg-[#EEF4FF] text-[12px] uppercase  cursor-pointer">${interview.type}</button>
+                            class="type mt-3 px-3 py-2 rounded-md font-medium bg-[#EEF4FF] text-[12px] text-green-600 border-2 border-green-600 uppercase  cursor-pointer">${interview.type}</button>
 
 
                         <p class="description mt-1">${interview.description}</p>
@@ -296,7 +304,7 @@ function renderRejected() {
                         <p class="location text-gray-500 mt-4">${rejected.location}<span class="salary">${rejected.salary}</span></p>
 
                         <button
-                            class="type mt-3 px-3 py-2 rounded-md font-medium bg-[#EEF4FF] text-[12px] uppercase  cursor-pointer   ">${rejected.type}</button>
+                            class="type mt-3 px-3 py-2 rounded-md font-medium bg-[#EEF4FF] text-[12px] text-red-600 border-2 border-red-600  uppercase  cursor-pointer   ">${rejected.type}</button>
 
 
                         <p class="description mt-1">${rejected.description}</p>
@@ -325,5 +333,4 @@ function renderRejected() {
 
 claculateCount();
 deleteJobElement();
-
-// interviewAndRejecetCount();
+interviewAndRejecetCount();
